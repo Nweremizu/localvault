@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LocalVault — your passwords, on your PC</title>
+  <meta name="description" content="LocalVault keeps every login in one encrypted file on your Windows PC and fills it into Chrome, Edge and Firefox. Free preview for Windows 11.">
+  <meta name="theme-color" content="#1a4be0">
+  <meta property="og:title" content="LocalVault — your passwords, on your PC">
+  <meta property="og:description" content="One encrypted file on your Windows PC. Fills into Chrome, Edge and Firefox. Breach checks send five characters, only when you ask.">
+  <meta property="og:image" content="https://nweremizu.github.io/localvault/assets/app-light.png">
+  <meta property="og:url" content="https://nweremizu.github.io/localvault/">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preload" href="assets/fonts/albert-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="wordmark" href="#top" aria-label="LocalVault home"><img src="assets/logo.png" alt="" width="24" height="24">LocalVault</a>
+    <nav aria-label="Sections">
+      <a href="#breach">Breach check</a>
+      <a href="#setup">Setup</a>
+      <a href="#faq">Questions</a>
+      <a href="https://github.com/Nweremizu/localvault">GitHub</a>
+    </nav>
+    <a class="button button-small" href="https://github.com/Nweremizu/localvault/releases/download/v0.2.1/LocalVault-0.2.1-win-x64.msi">Download</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title" class="masked"><span class="line"><span>Your passwords,</span></span><span class="line"><span>on your PC.</span></span></h1>
+        <p class="hero-lead">LocalVault keeps every login in one encrypted file on your Windows PC and fills it into Chrome, Edge and Firefox.</p>
+        <div class="hero-action">
+          <a class="button" href="https://github.com/Nweremizu/localvault/releases/download/v0.2.1/LocalVault-0.2.1-win-x64.msi">Download for Windows</a>
+          <p class="note">Free · Windows 11 x64 · 69 MB · version 0.2.1 preview</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <img class="stage-app" src="assets/app-dark.png" alt="The LocalVault desktop app, dark mode, listing saved logins" width="1600" height="1000">
+        <!-- A working copy of the extension's picker on a sample sign-in form. -->
+        <div class="signin" data-ui>
+          <p class="signin-site">tidewater.example</p>
+          <p class="signin-title">Sign in to Tidewater</p>
+          <label class="signin-label" for="demo-user">Email or username</label>
+          <div class="field-wrap">
+            <input id="demo-user" class="signin-input" autocomplete="off" spellcheck="false" placeholder="you@example.com" aria-describedby="demo-hint" aria-controls="demo-picker" aria-expanded="true">
+            <div class="picker" id="demo-picker" role="dialog" aria-label="LocalVault matching accounts">
+              <div class="picker-head"><img src="assets/logo.png" alt="" width="16" height="16"><span>LocalVault</span><button type="button" class="picker-close" aria-label="Close account picker">×</button></div>
+              <p class="picker-origin">https://tidewater.example</p>
+              <button type="button" class="picker-account" data-user="alex@example.com"><strong>alex@example.com</strong><span>Tidewater</span></button>
+              <button type="button" class="picker-account" data-user="alex.studio@example.com"><strong>alex.studio@example.com</strong><span>Tidewater · work</span></button>
+              <p class="picker-foot">Choose an account to fill · never auto-submitted</p>
+            </div>
+          </div>
+          <label class="signin-label" for="demo-pass">Password</label>
+          <input id="demo-pass" class="signin-input" type="password" autocomplete="off" readonly tabindex="-1">
+          <p class="signin-status" id="demo-hint" aria-live="polite">Pick an account to fill, or click the field to reopen.</p>
+          <span class="signin-submit" aria-hidden="true">Sign in</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro reveal" aria-label="Where your passwords live">
+      <p class="statement">Every login <span class="thumb"><img src="assets/thumb-entry.png" alt="A saved login in the LocalVault list" width="392" height="256"></span> lives in one encrypted file on your own disk, checked for reuse <span class="thumb"><img src="assets/thumb-reused.png" alt="The Reused label from the Security view" width="372" height="243"></span> and strength <span class="thumb"><img src="assets/thumb-meter.png" alt="The password strength meter" width="288" height="188"></span> without leaving it.</p>
+    </section>
+
+    <section class="breach" id="breach" aria-labelledby="breach-title" data-state="idle">
+      <div class="breach-copy reveal">
+        <h2 id="breach-title"><span data-breach-word>Five characters leave</span>.</h2>
+        <p>A breach check sends Have I Been Pwned the first five characters of your password’s SHA-1 hash, and only when you start one. Try it: this page works out the hash itself and sends nothing.</p>
+      </div>
+      <div class="hashbox" data-ui>
+        <label for="breach-input">Any password</label>
+        <input id="breach-input" type="text" value="password" autocomplete="off" spellcheck="false" maxlength="64">
+        <p class="hash" aria-live="polite"><span class="hash-sent" data-hash-sent>5BAA6</span><span class="hash-kept" data-hash-kept>1E4C9B93F3F0682250B6CF8331B7EE68FD8</span></p>
+        <p class="hash-legend"><span class="legend-sent">Sent, with your IP address</span><span class="legend-kept">Stays on your PC</span></p>
+      </div>
+    </section>
+
+    <section class="inside" aria-labelledby="inside-title">
+      <h2 id="inside-title" class="visually-hidden">What’s inside</h2>
+      <p class="picture-paragraph reveal">Make a strong password <span class="slot"><img src="assets/slot-generator.png" alt="A generated password" width="380" height="200" loading="lazy"></span> from the tray. Every item keeps 20 past versions, and deleted ones wait in Trash <span class="slot"><img src="assets/slot-trash.png" alt="Trash in the LocalVault sidebar" width="408" height="214" loading="lazy"></span>. Unlock with Windows Hello <span class="slot"><img src="assets/slot-hello.png" alt="The Windows Hello fingerprint button" width="352" height="184" loading="lazy"></span> and copies clear in 30 seconds.</p>
+      <div class="inside-row">
+        <figure class="inside-picture reveal">
+          <img src="assets/security.png" alt="The Security view listing five accounts with reused or weak passwords" width="1400" height="1143" loading="lazy">
+        </figure>
+        <div class="inside-note reveal">
+          <p>The Security view finds reused and weak passwords on your PC, without going online. It locks itself after five minutes idle, and again whenever Windows locks or sleeps.</p>
+          <a class="text-link" href="https://github.com/Nweremizu/localvault/blob/main/SECURITY.md">Read the security design</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="setup" id="setup" aria-labelledby="setup-title">
+      <h2 id="setup-title" class="reveal">Set up in three steps</h2>
+      <ol class="exchanges">
+        <li class="exchange reveal">
+          <p class="exchange-say">First, install it.</p>
+          <div class="call" data-ui>
+            <span class="file-icon" aria-hidden="true"></span>
+            <span class="file-name">LocalVault-0.2.1-win-x64.msi</span>
+            <span class="file-size">69 MB</span>
+          </div>
+          <figure class="response">
+            <img src="assets/lock-dark.png" alt="LocalVault asking to unlock with Windows Hello or the master password" width="960" height="1000" loading="lazy">
+          </figure>
+          <p class="exchange-note">It installs for your Windows account, without admin rights. Choose a master password of 12 characters or more.</p>
+        </li>
+        <li class="exchange reveal">
+          <p class="exchange-say">Then pair your browser.</p>
+          <div class="call call-pair" data-ui>
+            <p>Keep the desktop app open and unlocked. Verify this code there:</p>
+            <strong class="pair-code">482 913</strong>
+          </div>
+          <div class="response msgbox" data-ui role="img" aria-label="The desktop approval dialog for pairing">
+            <p class="msgbox-title">LocalVault</p>
+            <p>Pair browser profile ‘Firefox · Home’?</p>
+            <p>Confirm the extension displays code 482913.</p>
+            <p>Approve only if you just requested this connection.</p>
+            <span class="msgbox-buttons"><span class="msgbox-yes">Yes</span><span>No</span></span>
+          </div>
+        </li>
+        <li class="exchange exchange-final reveal">
+          <p class="exchange-say">Then sign in like always.</p>
+          <div class="call call-login" data-ui>
+            <span class="call-login-label">Email or username</span>
+            <span class="call-login-input">alex@example.com</span>
+          </div>
+          <figure class="response response-wide">
+            <img class="drift" src="assets/app-crop.png" alt="The LocalVault window with six saved logins" width="1720" height="1100" loading="lazy">
+          </figure>
+          <p class="exchange-note">Logins you fill, and new ones you save from the browser, all land in the same vault.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="faq-title">Fair questions</h2>
+      <div class="faq-list">
+        <details name="faq" open>
+          <summary>Where are my passwords stored?</summary>
+          <p>In one file, %LOCALAPPDATA%\LocalVault\Data\vault.lvault, on your PC. Usernames, websites and notes are encrypted along with the passwords. Nothing is synced to a server, so make an encrypted backup and keep it on another device.</p>
+        </details>
+        <details name="faq">
+          <summary>How is the vault encrypted?</summary>
+          <p>Argon2id turns your master password into a key, using 256 MiB of memory and three passes. That key unlocks a random vault key, and XChaCha20-Poly1305 seals everything with it. The full file format is in the security design on GitHub.</p>
+        </details>
+        <details name="faq">
+          <summary>What if I forget my master password?</summary>
+          <p>Nobody can recover it, us included. You can restore an encrypted backup if you remember its password, or reset LocalVault and start a new, empty vault.</p>
+        </details>
+        <details name="faq">
+          <summary>Does LocalVault ever go online?</summary>
+          <p>Only for two things you control. A breach check sends five hash characters and your IP address to Have I Been Pwned, and asks first each time. Website icons, if switched on, come from the saved sites themselves. There is no telemetry.</p>
+        </details>
+        <details name="faq">
+          <summary>Which browsers does it work with?</summary>
+          <p>Chrome, Edge and Firefox on Windows 11. In this preview the extensions are loaded by hand from the install folder; store listings come later. Private windows are left alone.</p>
+        </details>
+        <details name="faq">
+          <summary>Windows warns me about the installer. Is it safe?</summary>
+          <p>The preview is not code-signed yet, so Windows SmartScreen asks before running it. Check that its SHA-256 matches the one published with the release: 8fbb2899cbe5fc463461c7b3c66cc3d61234182408d5acce706c066248161405.</p>
+        </details>
+        <details name="faq">
+          <summary>Has it been audited?</summary>
+          <p>Not yet. It has automated tests, but no independent security review. The README and security design list exactly what is and isn’t checked.</p>
+        </details>
+        <details name="faq">
+          <summary>How do updates work?</summary>
+          <p>Download a newer installer from GitHub and run it, or choose Settings, then Install update. Your vault, pairings and preferences stay put. LocalVault never downloads or installs anything on its own.</p>
+        </details>
+      </div>
+    </section>
+
+    <a class="cta" href="https://github.com/Nweremizu/localvault/releases/download/v0.2.1/LocalVault-0.2.1-win-x64.msi">
+      <span class="cta-sentence">Get LocalVault 0.2.1 for Windows 11. Free, 69 MB, no admin rights needed.</span>
+      <svg class="cta-arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 36 36 12M16 12h20v20" fill="none" stroke="currentColor" stroke-width="4"/></svg>
+      <span class="cta-word">Download</span>
+    </a>
+  </main>
+
+  <footer class="footer">
+    <div class="tile tile-statement">
+      <p>Made for one PC and the person using it.</p>
+      <p class="legal">LocalVault is an unsigned, unaudited preview. Screens shown use sample data. Set in Albert Sans under the SIL Open Font License. This page loads nothing from anyone else.</p>
+    </div>
+    <nav class="tile tile-nav" aria-label="Footer">
+      <a href="https://github.com/Nweremizu/localvault">Source on GitHub</a>
+      <a href="https://github.com/Nweremizu/localvault/releases">All releases</a>
+      <a href="https://github.com/Nweremizu/localvault/blob/main/SECURITY.md">Security design</a>
+      <a href="https://github.com/Nweremizu/localvault/blob/main/RELEASE-NOTES.md">Release notes</a>
+    </nav>
+    <div class="tile tile-version">
+      <p>Version 0.2.1 preview</p>
+      <p class="muted">Released 17 October 2026</p>
+    </div>
+    <div class="tile tile-contact">
+      <p class="muted">Found a bug?</p>
+      <a href="https://github.com/Nweremizu/localvault/issues">Open an issue</a>
+    </div>
+    <div class="tile tile-wordmark" aria-hidden="true">LocalVault</div>
+    <a class="tile tile-get" href="https://github.com/Nweremizu/localvault/releases/download/v0.2.1/LocalVault-0.2.1-win-x64.msi">
+      <span>Get the installer</span>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 36 36 12M16 12h20v20" fill="none" stroke="currentColor" stroke-width="4"/></svg>
+    </a>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

@@ -20,3 +20,4 @@ extensions/test-built/
 *.pfx
 *.p12
 *.key
+.taste-skill/
