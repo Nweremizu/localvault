@@ -1,0 +1,86 @@
+.security-dashboard {
+  container: security / inline-size;
+  --security-tint: oklch(0.966 0.014 165);
+  --security-ink: oklch(0.35 0.055 165);
+  --security-warning: oklch(0.5 0.09 65);
+  --security-warning-bg: oklch(0.955 0.035 75);
+  --security-danger-bg: oklch(0.95 0.025 25);
+  --security-quiet: color-mix(in oklch, var(--muted) 60%, var(--background));
+}
+.dark .security-dashboard {
+  --security-tint: oklch(0.215 0.023 165);
+  --security-ink: oklch(0.82 0.075 165);
+  --security-warning: oklch(0.82 0.09 75);
+  --security-warning-bg: oklch(0.265 0.035 75);
+  --security-danger-bg: oklch(0.25 0.045 25);
+}
+
+.security-shell { max-inline-size: 1040px; margin-inline: auto; padding: 20px clamp(14px, 3cqi, 32px) 28px; }
+.security-header, .security-section-heading, .breach-topline { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
+.security-header { margin-block-end: 16px; }
+.security-header h1 { font-size: 22px; font-weight: 600; letter-spacing: -.03em; }
+.security-header p, .breach-status p { color: var(--muted-foreground); font-size: 12px; line-height: 1.5; }
+.security-error { padding: 10px 12px; margin-block-end: 12px; border-radius: 6px; background: var(--security-danger-bg); color: var(--destructive); overflow-wrap: anywhere; }
+.breach-feature { padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--security-tint); margin-block-end: 20px; }
+.breach-topline { justify-content: start; gap: 10px; }
+.breach-topline > svg { color: var(--security-ink); }
+.breach-status { flex: 1 1 160px; }
+.breach-status h2, .security-section-heading h2 { font-size: 14px; font-weight: 600; }
+.breach-actions { display: flex; flex-wrap: wrap; gap: 4px; }
+.breach-feature[data-outcome="found"] .breach-status p { color: var(--destructive); font-weight: 500; }
+.breach-feature[data-outcome="partial"] .breach-status p, .breach-partial { color: var(--security-warning); }
+.breach-notice, .breach-partial { margin-block-start: 8px; font-size: 12px; line-height: 1.5; }
+.breach-notice { color: var(--muted-foreground); }
+.security-section-heading { margin-block-end: 8px; }
+.security-filters { display: flex; gap: 4px; flex-wrap: wrap; margin-block-end: 10px; }
+.security-filters button { display: inline-flex; align-items: center; gap: 7px; min-block-size: 34px; padding: 5px 9px; border-radius: 5px; font-size: 12px; color: var(--muted-foreground); }
+.security-filters button:hover { background: var(--muted); color: var(--foreground); }
+.security-filters button[aria-pressed="true"] { background: var(--muted); color: var(--foreground); font-weight: 600; }
+.security-filters button span { font-variant-numeric: tabular-nums; }
+.security-findings { border-block-start: 1px solid var(--border); }
+.security-findings li { border-block-end: 1px solid var(--border); }
+.security-finding { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; inline-size: 100%; text-align: start; padding: 10px 8px; border-radius: 4px; }
+.security-finding:hover, .breach-result:hover { background: var(--muted); }
+.security-finding-content { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; }
+.security-account-title { font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
+.security-account-user { grid-column: 1; font-size: 11px; color: var(--muted-foreground); overflow-wrap: anywhere; }
+.security-reason { grid-column: 1; font-size: 12px; line-height: 1.5; color: var(--muted-foreground); overflow-wrap: anywhere; }
+.security-finding-tags { display: flex; flex-wrap: wrap; gap: 4px; align-self: center; justify-content: end; grid-column: 2; grid-row: 1 / span 3; }
+.security-finding-tags > span { font-size: 10px; line-height: 1.5; padding: 2px 6px; border-radius: 4px; background: var(--muted); color: var(--muted-foreground); }
+.security-finding-tags > .security-tag-danger { background: var(--security-danger-bg); color: var(--destructive); }
+.security-finding-tags > .security-tag-warning { background: var(--security-warning-bg); color: var(--security-warning); }
+.security-row-arrow { color: var(--muted-foreground); }
+.security-empty { padding: 18px 8px; font-size: 13px; }
+.security-empty h3 { font-size: 14px; font-weight: 500; }
+.security-empty p { margin-block-start: 4px; color: var(--muted-foreground); font-size: 12px; }
+.security-disclosure { margin-block-start: 10px; color: var(--muted-foreground); font-size: 12px; }
+.security-disclosure summary, .breach-results > summary { display: flex; align-items: center; gap: 6px; min-block-size: 34px; cursor: pointer; list-style: none; font-size: 12px; }
+.security-disclosure summary::-webkit-details-marker, .breach-results > summary::-webkit-details-marker { display: none; }
+.security-disclosure summary > svg:last-child, .breach-results > summary > svg { margin-inline-start: auto; }
+.security-disclosure[open] summary > svg:last-child, .breach-results[open] > summary > svg { transform: rotate(180deg); }
+.security-disclosure p { max-inline-size: 85ch; line-height: 1.6; margin-block: 4px 8px; }
+.breach-privacy { margin-block-start: 2px; }
+.breach-results { margin-block-start: 6px; border-block-start: 1px solid var(--border); }
+.breach-result-filters { margin-block: 4px; }
+.breach-result-list { max-block-size: 180px; overflow-y: auto; }
+.breach-result { display: flex; align-items: center; gap: 12px; inline-size: 100%; min-block-size: 36px; padding: 6px; text-align: start; border-radius: 4px; font-size: 12px; }
+.breach-result strong { flex: 1; font-weight: 500; overflow-wrap: anywhere; }
+.breach-result span { color: var(--muted-foreground); }
+.security-dashboard button:focus-visible, .security-dashboard summary:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@container security (max-width: 560px) {
+  .security-finding-content { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+  .security-finding-tags { grid-column: 1; grid-row: auto; justify-content: start; }
+  .breach-actions { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .security-dashboard .animate-spin { animation: none; }
+}
+
+.security-finding-row, .breach-result-row { display: flex; align-items: center; gap: 8px; }
+.security-finding-row > .security-finding, .breach-result-row > .breach-result { flex: 1; min-inline-size: 0; }
+.security-site-action { margin-inline-end: 6px; flex-shrink: 0; }
+@container security (max-width: 430px) {
+  .security-finding-row, .breach-result-row { flex-wrap: wrap; gap: 0; }
+  .security-finding-row > .security-finding, .breach-result-row > .breach-result { flex-basis: 100%; }
+  .security-site-action { margin-block-end: 8px; margin-inline-start: 8px; }
+}

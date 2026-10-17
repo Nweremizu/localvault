@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../../src/LocalVault.Core/LocalVault.Core.csproj" /></ItemGroup>
+  <ItemGroup><Compile Include="../../src/LocalVault.Desktop/InstallerUpdate.cs" Link="InstallerUpdate.cs" /></ItemGroup>
+</Project>

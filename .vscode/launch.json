@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "LocalVault: UI preview",
+      "type": "sharpdbg",
+      "request": "launch",
+      "preLaunchTask": "build desktop (Debug)",
+      "program": "${workspaceFolder}/src/LocalVault.Desktop/bin/Debug/net10.0-windows10.0.22000.0/win-x64/LocalVault.exe",
+      "args": ["--ui-preview"],
+      "cwd": "${workspaceFolder}/src/LocalVault.Desktop",
+      "stopAtEntry": false,
+      "runtimeFlavor": "coreclr"
+    }
+  ]
+}

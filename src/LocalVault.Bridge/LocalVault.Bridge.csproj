@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../LocalVault.Core/LocalVault.Core.csproj" />
+    <None Include="../../browser-identity.json" Link="browser-identity.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

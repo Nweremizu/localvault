@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LocalVault</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+  <header><div class="brand"><img class="mark" src="icon48.png" alt="" width="32" height="32"><div><h1>LocalVault</h1><small>PERSONAL VAULT</small></div></div><span class="local">LOCAL ONLY</span></header>
+  <main>
+    <div class="intro"><span class="eyebrow">BROWSER CONNECTION</span><p>Use your vault in this browser.</p></div>
+    <p id="status" role="status" aria-live="polite">Connecting to your desktop vault…</p>
+    <button id="unlock" hidden>Unlock LocalVault</button>
+    <section id="permission" hidden><h2>Website access is restricted</h2><p>LocalVault requests HTTPS access during installation. Allow all sites in the browser extension settings if access was withheld.</p></section>
+    <section id="pairing" hidden><div class="section-head"><span class="step">01</span><h2>Pair this browser</h2></div><p>Keep the desktop app open and unlocked. Verify this code there:</p><strong id="code"></strong><label for="profile">Profile label</label><input id="profile" maxlength="80" value="My browser"><button id="pair">Pair with desktop app</button></section>
+    <section id="accounts" hidden><div class="section-head"><span class="step">↗</span><h2 id="origin"></h2></div><p class="hint">Choose an account to fill on this website.</p><div id="account-list"></div><button id="more" class="secondary" hidden>Show more accounts</button><p id="empty" hidden>No saved accounts for this exact website.</p></section>
+    <section id="pending" hidden><div class="section-head"><span class="step">+</span><h2>Save this password?</h2></div><p id="pending-user"></p><p>A form submission was detected. Login success was not verified. Saving also requires desktop confirmation.</p><label for="replace">Account to save</label><select id="replace"><option value="">Save as a new account</option></select><div class="row"><button id="save">Save or update</button><button id="reject" class="secondary">Dismiss</button></div></section>
+    <footer><button id="refresh" class="secondary">Refresh</button><button id="forget" class="secondary">Forget pairing</button></footer>
+  </main><script src="popup.js"></script>
+</body></html>

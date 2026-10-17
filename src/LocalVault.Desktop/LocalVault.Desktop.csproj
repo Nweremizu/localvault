@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>WinExe</OutputType><UseWPF>true</UseWPF><UseWindowsForms>true</UseWindowsForms><AssemblyName>LocalVault</AssemblyName><ApplicationIcon>app.ico</ApplicationIcon></PropertyGroup>
+  <ItemGroup>
+    <Resource Include="app.ico" />
+    <!-- WinForms only supplies the tray icon; keep its types out of the WPF namespace -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4258.31" />
+    <ProjectReference Include="../LocalVault.Core/LocalVault.Core.csproj" />
+    <None Include="../../browser-identity.json" Link="browser-identity.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- React UI built by `npm run build` in /ui; served to WebView2 from https://app.localvault/ -->
+    <None Include="../../ui/dist/**" Link="ui/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

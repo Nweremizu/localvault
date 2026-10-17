@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/LocalVault.Core/LocalVault.Core.csproj" />
+  <Project Path="src/LocalVault.Desktop/LocalVault.Desktop.csproj" />
+  <Project Path="src/LocalVault.Bridge/LocalVault.Bridge.csproj" />
+  <Project Path="tests/LocalVault.Tests/LocalVault.Tests.csproj" />
+</Solution>
