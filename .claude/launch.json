@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm.cmd",
       "runtimeArgs": ["--prefix", "ui", "run", "dev", "--", "--port", "5173", "--strictPort"],
       "port": 5173
+    },
+    {
+      "name": "website",
+      "runtimeExecutable": "npx.cmd",
+      "runtimeArgs": ["--yes", "http-server@14.1.1", "website", "-p", "4321", "-c-1", "-s"],
+      "port": 4321
     }
   ]
 }

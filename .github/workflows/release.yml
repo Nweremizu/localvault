@@ -1,0 +1,69 @@
+# Pushing a tag like v0.2.1 builds the MSI and publishes it to a GitHub pre-release.
+# The tag must match <Version> in Directory.Build.props (build.ps1 checks UI/extension versions match it).
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: |
+            extensions/package-lock.json
+            ui/package-lock.json
+
+      - name: Check tag matches version
+        shell: pwsh
+        run: |
+          $version = ([xml](Get-Content 'Directory.Build.props' -Raw)).Project.PropertyGroup.Version
+          if ("v$version" -ne $env:GITHUB_REF_NAME) { throw "Tag $env:GITHUB_REF_NAME does not match version $version" }
+          "VERSION=$version" >> $env:GITHUB_ENV
+
+      # Runs npm ci/build/test for extensions + UI, .NET restore/tests/publish, then WiX.
+      - name: Build MSI
+        shell: pwsh
+        run: ./scripts/build.ps1
+
+      # Code signing goes here once a certificate exists: sign the published app binaries
+      # (before WiX packs them, i.e. inside build.ps1 after publish) and the MSI itself,
+      # e.g. with Azure Trusted Signing or signtool + a cert from repository secrets.
+      # Then drop --prerelease below.
+
+      - name: Checksums
+        shell: pwsh
+        working-directory: artifacts
+        run: |
+          $msi = "LocalVault-$env:VERSION-win-x64.msi"
+          $hash = (Get-FileHash $msi -Algorithm SHA256).Hash.ToLowerInvariant()
+          # sha256sum format so `sha256sum -c SHA256SUMS.txt` works.
+          [IO.File]::WriteAllText("$PWD/SHA256SUMS.txt", "$hash  $msi`n")
+
+      - name: Publish release
+        shell: pwsh
+        working-directory: artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $env:GITHUB_REF_NAME "LocalVault-$env:VERSION-win-x64.msi" SHA256SUMS.txt `
+            --repo $env:GITHUB_REPOSITORY --title "LocalVault $env:VERSION" --generate-notes --prerelease
+          if ($LASTEXITCODE -ne 0) { throw "gh release create failed" }
